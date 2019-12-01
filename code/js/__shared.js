@@ -9,46 +9,37 @@ console.log('loaded: __shared.js')
 //
 const version = browser.runtime.getManifest().version
 
-//  browser.windows.onCreated.addListener(listener)
-//  https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/windows/onCreated
-//  Fired when a window is created.
+//  browser.tabs.onAttached.addListener(listener)
+//  https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/onAttached
+//  Fired when a tab is attached to a window, for example because it was moved between windows.
 //
 //  callback: listener -> Function that will be called when this event occurs. The function will
 //                        be passed the following arguments:
 //  {
-//    window -> A windows.Window object containing details of the window that was created.
+//    tabId: integer -> ID of the tab that was attached to a new window.
+//    attachInfo: object -> ID of the new window, and index of the tab within it.
 //  }
 //
-browser.windows.onCreated.addListener((window) => {
-  console.log(window)
+browser.tabs.onAttached.addListener((tabId, attachInfo) => {
+  //  browser.tabs.onAttached.addListener(listener)
+  //  https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/onAttached
+  //  Fired when a tab is attached to a window, for example because it was moved between windows.
   //
-  // tabs.query
-  // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/query
-  // Gets all tabs that have the specified properties, or all tabs if no properties are
-  // specified.
+  //  callback: listener -> Function that will be called when this event occurs. The function will
+  //                        be passed the following arguments:
+  //  {
+  //    tabId: integer -> ID of the tab that was attached to a new window.
+  //    attachInfo: object -> ID of the new window, and index of the tab within it.
+  //  }
   //
-  // Return value:
-  // A Promise that will be fulfilled with an array of tabs.Tab objects, containing
-  // information about each matching tab. If any error occurs, the promise will be rejected
-  // with an error message.
-  //
-  // queryInfo: Object -> The properties that a tab must match to be included in the
-  //                      resulting list.
-  // {
-  //   windowId: integer -> The ID of the parent window, or windows.WINDOW_ID_CURRENT for the
-  //                        current window.
-  // }
-  browser.tabs
-    .query({ windowId: window.id })
-    .then(tabs => tabs
-      .filter(tab => tab.active === true)
-      .filter(tab => tab.title === 'New Tab')
-      .forEach(tab => {
-        browser.tabs.duplicate(tab.id)
-        browser.tabs.remove(tab.id)
-      })
-    )
-    .catch(err => {
-      console.log('[onCreated@tabs.query] error:', err)
+  browser.windows.update(attachInfo.newWindowId, { focused: true })
+    .then(_ => {
+      browser.tabs.get(tabId)
+        .then(tab => {
+          if (tab.title === 'New Tab') {
+            browser.tabs.create({ active: true })
+              .then(_ => browser.tabs.remove(tab.id))
+          }
+        })
     })
 })
