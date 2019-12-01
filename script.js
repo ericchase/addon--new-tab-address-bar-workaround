@@ -7,16 +7,6 @@ document.addEventListener("keydown", event => {
     search.focus();
   }
 });
-function go() {
-  // on enter
-  if(event.keyCode == 13) {
-    window.location.assign(search.value)
-  }
-  // on escape
-  if(event.keyCode == 27) {
-    search.value = "";
-  }
-}
 
 function resizeContainer() {
   let size = 200
