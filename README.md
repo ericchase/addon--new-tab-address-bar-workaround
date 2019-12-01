@@ -2,7 +2,7 @@
 
 A Firefox addon workaround for address bar focus loss when new tabs are moved to new windows.
 
-Get the addon here: https://addons.mozilla.org/en-US/firefox/addon/reload-new-tab/
+Get the addon here: https://addons.mozilla.org/en-US/firefox/addon/new-tab-address-bar-workaround/
 
 ## Motive
 
