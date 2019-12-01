@@ -4,14 +4,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <title>My test page</title>
+    <style>
+      #container {
+        text-align: center;
+        padding-top: 200px;
+      }
+      #search {
+        text-align: center;
+        font-size: 24px;
+        width: 50%;
+      }
+    </style>
+    <script type="text/javascript" src="script.js" defer></script>
   </head>
   <body>
-    <form>
-      <textarea>
-        id = "search"
-        rows = "1"
-        cols = "120"
-      </textarea>
-    </form>
+    <div id="container">
+      <input type="text" id="search" placeholder="search" onkeydown="go()"></input>
+    </div>
   </body>
 </html>
