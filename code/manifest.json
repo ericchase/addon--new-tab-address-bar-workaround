@@ -1,0 +1,35 @@
+{
+  "name": "New Tab Address Bar Workaround",
+  "version": "0.1.1",
+  "description": "Workaround for address bar focus loss when new tabs are moved to new windows.",
+  "developer": {
+    "name": "ericchase",
+    "url": "https://addons.mozilla.org/en-US/firefox/addon/reload-new-tab/"
+  },
+  "icons": {
+    "48": "images/logo-48.png",
+    "96": "images/logo-96.png"
+  },
+  "background": {
+    "scripts": [
+      "js/__shared.js",
+      "js/runtime-startup.js"
+    ]
+  },
+  "chrome_settings_overrides" : {
+    "homepage": "new-tab.html"
+  },
+  "chrome_url_overrides" : {
+    "newtab": "new-tab.html"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{1428c317-8eb4-424b-825c-75b3cd64b564}"
+    }
+  },
+  "permissions": [
+    "search",
+    "tabs"
+  ],
+  "manifest_version": 2
+}
