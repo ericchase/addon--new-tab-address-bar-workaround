@@ -1,6 +1,6 @@
 {
   "name": "New Tab Address Bar Workaround",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Workaround for address bar focus loss when new tabs are moved to new windows.",
   "developer": {
     "name": "ericchase",
