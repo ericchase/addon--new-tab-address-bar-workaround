@@ -50,15 +50,15 @@ console.log('loaded: runtime-startup.js')
 //                           page in Firefox or using web-ext run. False otherwise.
 //  }
 browser.runtime.onInstalled.addListener(details => {
-  console.log('[runtime-startup.js] onInstalled()')
+    console.log('[runtime-startup.js] onInstalled()')
 
-  if (details.reason === 'install') {
-    console.log('[runtime-startup.js] on-install: info: welcome to version', version)
-    console.log('[runtime-startup.js] on-install: info: thank you for installing')
-  }
+    if (details.reason === 'install') {
+        console.log('[runtime-startup.js] on-install: info: welcome to version', version)
+        console.log('[runtime-startup.js] on-install: info: thank you for installing')
+    }
 
-  if (details.reason === 'update') {
-    console.log('[runtime-startup.js] on-update: info: welcome to version', version)
-    console.log('[runtime-startup.js] on-update: info: thank you for updating')
-  }
+    if (details.reason === 'update') {
+        console.log('[runtime-startup.js] on-update: info: welcome to version', version)
+        console.log('[runtime-startup.js] on-update: info: thank you for updating')
+    }
 })
